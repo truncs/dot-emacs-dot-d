@@ -41,13 +41,15 @@
 ; read _after_ the initial frame is created.
 (add-hook 'after-make-frame-functions 'toggle-fullscreen)
 
-
+; font size
+(set-face-attribute 'default nil :height 110)
 
 
 (require 'color-theme)
 (color-theme-initialize)
 (load-file "~/.emacs.d/themes/zenburn.el")
 (load-file "~/.emacs.d/themes/color-theme-blackboard.el")
+(load-file "~/.emacs.d/themes/color-theme-molokai.el")
 (load-file "~/.emacs.d/themes/color-theme-twilight.el")
 ;(load file "~/.emacs.d/themes/color-theme-vibrant-ink.el")
 ;(require 'magit)
@@ -56,6 +58,6 @@
 ;(if window-system
 ;    (color-theme-twilight))
 (if window-system
-    (color-theme-zenburn))
+    (color-theme-molokai))
 ;(if window-system
 ;    color-theme-charcoal-black))
