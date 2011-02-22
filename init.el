@@ -13,7 +13,8 @@
        '("elisp"
 	 "elisp/slime"
 	 "elisp/clojure-mode"
-	 "elisp/magit"))
+	 "elisp/magit"
+	 "elisp/color-theme"))
 
 ;; autoloads
 (autoload 'magit-status "magit" "Magit" t)
@@ -65,8 +66,6 @@
  (set-face-attribute 'default nil :height 110)
 
 
- (require 'color-theme)
- (color-theme-initialize)
  (load-file "~/.emacs.d/themes/zenburn.el")
  (load-file "~/.emacs.d/themes/color-theme-blackboard.el")
  (load-file "~/.emacs.d/themes/color-theme-molokai.el")
