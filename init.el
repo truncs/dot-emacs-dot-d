@@ -82,18 +82,13 @@
 
 ;;
 ;; swank-clojure
-(add-to-list 'load-path "~/opt/swank-clojure/src/emacs")
 
-(setq swank-clojure-jar-path "~/.clojure/clojure.jar"
-      swank-clojure-extra-classpaths (list
-				            "~/opt/swank-clojure/src/main/clojure"
-					          "~/.clojure/clojure-contrib.jar"))
-
-(require 'swank-clojure-autoload)
-
-;; slime
-(eval-after-load "slime" 
-  '(progn (slime-setup '(slime-repl))))
-
-(require 'slime)
-(slime-setup) 
+;;; This was installed by package-install.el.
+;;; This provides support for the package system and
+;;; interfacing with ELPA, the package archive.
+;;; Move this code earlier if you want to reference
+;;; packages in your .emacs.
+(when
+    (load
+     (expand-file-name "~/.emacs.d/elpa/package.el"))
+  (package-initialize))
