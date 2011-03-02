@@ -14,8 +14,11 @@
 	 "elisp/slime"
 	 "elisp/clojure-mode"
 	 "elisp/magit"
-	 "elisp/color-theme"))
+	 "elisp/color-theme"
+	 "elisp/yasnippet-bundle"))
 
+
+(require 'yasnippet-bundle)
 ;; autoloads
 (autoload 'magit-status "magit" "Magit" t)
 
@@ -40,7 +43,6 @@
 
  ;; No startup splash as well
  (setq inhibit-splash-screen t)
-
  ;; Keys for getting the data in and out of clipboard
  (global-set-key [(shift delete)] 'clipboard-kill-region)
  (global-set-key [(control insert)] 'clipboard-kill-ring-save)
@@ -80,15 +82,5 @@
  ;(if window-system
  ;    color-theme-charcoal-black))
 
-;;
-;; swank-clojure
-
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-;;; Move this code earlier if you want to reference
-;;; packages in your .emacs.
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
+(ido-mode 1)
+(iswitchb-mode 1)
