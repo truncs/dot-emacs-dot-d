@@ -15,10 +15,13 @@
 	 "elisp/clojure-mode"
 	 "elisp/magit"
 	 "elisp/color-theme"
-	 "elisp/yasnippet-bundle"))
+	 "elisp/yasnippet-bundle"
+	 "elisp/js2"))
 
 
 (require 'yasnippet-bundle)
+(autoload 'js2-mode "js2-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 ;; autoloads
 (autoload 'magit-status "magit" "Magit" t)
 
