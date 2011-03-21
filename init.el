@@ -16,9 +16,11 @@
 	 "elisp/magit"
 	 "elisp/color-theme"
 	 "elisp/yasnippet-bundle"
-	 "elisp/js2"))
+	 "elisp/js2"
+	 "elisp/ack"))
 
-
+;; Ack 
+(require 'ack)
 (require 'yasnippet-bundle)
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
