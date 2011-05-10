@@ -20,7 +20,8 @@
 	 "elisp/ack"
 	 "elisp/scala"
 	 "elisp/ensime/elisp"
-	 "elisp/coffee-mode"))
+	 "elisp/coffee-mode"
+	 "elisp/go"))
 
 ;; CoffeeScript
 (require 'coffee-mode)
@@ -36,6 +37,8 @@
 ;; ack from emacs
 (require 'ack)
 
+;; Go Mode
+(require 'go-mode-load)
 ;; Scala 
 (require 'ensime)
 (load-file "~/.emacs.d/elisp/scala/scala-mode-auto.el")
