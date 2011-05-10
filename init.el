@@ -17,10 +17,32 @@
 	 "elisp/color-theme"
 	 "elisp/yasnippet-bundle"
 	 "elisp/js2"
-	 "elisp/ack"))
+	 "elisp/ack"
+	 "elisp/scala"
+	 "elisp/ensime/elisp"
+	 "elisp/coffee-mode"))
 
-;; Ack 
+;; CoffeeScript
+(require 'coffee-mode)
+(add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
+(add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
+(setq-default tab-width 4)
+(defun coffee-custom ()
+  "coffee-mode-hook"
+ (set (make-local-variable 'tab-width) 2))
+
+(add-hook 'coffee-mode-hook
+  '(lambda() (coffee-custom)))
+;; ack from emacs
 (require 'ack)
+
+;; Scala 
+(require 'ensime)
+(load-file "~/.emacs.d/elisp/scala/scala-mode-auto.el")
+
+;; Ensime
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
 (require 'yasnippet-bundle)
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
@@ -42,7 +64,6 @@
  (add-hook 'clojure-mode-hook 'clojure-test-maybe-enable)
 
  ;; No bars please 
- (menu-bar-mode -1)
  (tool-bar-mode -1)
  (scroll-bar-mode -1)
 
@@ -71,21 +92,16 @@
 
  ; font size
  (set-face-attribute 'default nil :height 110)
-
+ (set-default-font "ubuntu")
 
  (load-file "~/.emacs.d/themes/zenburn.el")
  (load-file "~/.emacs.d/themes/color-theme-blackboard.el")
  (load-file "~/.emacs.d/themes/color-theme-molokai.el")
  (load-file "~/.emacs.d/themes/color-theme-twilight.el")
- ;(load file "~/.emacs.d/themes/color-theme-vibrant-ink.el")
- ;(require 'magit)
- ;(if window-system
- ;   (color-theme-blackboard))
- ;(if window-system
- ;    (color-theme-twilight))
+
  (color-theme-molokai)
- ;(if window-system
- ;    color-theme-charcoal-black))
+
 
 (ido-mode 1)
 (iswitchb-mode 1)
+
