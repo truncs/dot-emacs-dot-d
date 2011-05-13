@@ -7,3 +7,6 @@
 [submodule "elisp/slime"]
 	path=elisp/slime
 	url = git://github.com/emacsmirror/slime.git
+[submodule "elisp/ensime"]
+	path = elisp/ensime
+	url = https://github.com/aemoncannon/ensime.git

@@ -21,7 +21,9 @@
 	 "elisp/scala"
 	 "elisp/ensime/elisp"
 	 "elisp/coffee-mode"
-	 "elisp/go"))
+	 "elisp/go"
+	 "elisp/haml"
+	 "customizations/my-keys.el"))
 
 ;; CoffeeScript
 (require 'coffee-mode)
@@ -39,7 +41,11 @@
 
 ;; Go Mode
 (require 'go-mode-load)
-;; Scala 
+
+;; Haml Mode
+(require 'haml-mode)
+
+;; Load elisp for emacs code browser
 (require 'ensime)
 (load-file "~/.emacs.d/elisp/scala/scala-mode-auto.el")
 
@@ -77,6 +83,9 @@
  (global-set-key [(control insert)] 'clipboard-kill-ring-save)
  (global-set-key [(shift insert)] 'clipboard-yank)
 
+;; Split ediff windows 
+(setq ediff-split-window-function 'split-window-horizontally)
+
  (defun toggle-fullscreen (&optional f)
    (interactive)
    (let ((current-value (frame-parameter nil 'fullscreen)))
@@ -104,7 +113,7 @@
 
  (color-theme-molokai)
 
-
+; Makes opening and switching between buffers easy
 (ido-mode 1)
 (iswitchb-mode 1)
 
