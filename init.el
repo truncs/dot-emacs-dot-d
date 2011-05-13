@@ -117,3 +117,9 @@
 (ido-mode 1)
 (iswitchb-mode 1)
 
+; Set up tabs
+; Use spaces instead of tabs 
+(setq c-basic-indent 2)
+(setq tab-width 4)
+(setq indent-tabs-mode nil)
+
