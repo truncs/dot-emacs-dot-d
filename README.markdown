@@ -6,9 +6,9 @@ use-package and the package hosting servers.
 
 # Packages
   	   
-	   * Ensime
-	   * Go Mode
-	   * Scala Mode
-	   * Slime
-	   * Yasnippet (Code snippets)
-       * Dracula (Color theme)
+  * Ensime
+  * Go Mode
+  * Scala Mode
+  * Slime
+  * Yasnippet (Code snippets)
+  * Dracula (Color theme)
