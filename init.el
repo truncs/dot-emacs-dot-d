@@ -1,125 +1,91 @@
- (defun add-to-load-path (path)
-   "Adds path to the load-path"
-   (add-to-list 'load-path (expand-file-name path)))
+;; global variables
+(setq
+   inhibit-startup-screen t
+    create-lockfiles nil
+     make-backup-files nil
+      column-number-mode t
+       scroll-error-top-bottom t
+        show-paren-delay 0.5
+	 use-package-always-ensure t
+	  sentence-end-double-space nil)
 
- (defmacro set-tab-width(n)
-   "Returns a lambda to set tab-width to n"
-   `(lambda nil (setq tab-width ,n)))
+;; buffer local variables
+(setq-default
+   indent-tabs-mode nil
+    tab-width 4
+     c-basic-offset 4)
 
- (defvar system-prefix nil "system prefix")
-
- ;; load-paths
- (mapc (lambda (x) (add-to-load-path (concat user-emacs-directory x)))
-       '("elisp"
-	 "elisp/slime"
-	 "elisp/clojure-mode"
-	 "elisp/magit"
-	 "elisp/color-theme"
-	 "elisp/yasnippet-bundle"
-	 "elisp/js2"
-	 "elisp/ack"
-	 "elisp/scala"
-	 "elisp/ensime/elisp"
-	 "elisp/coffee-mode"
-	 "elisp/go"
-	 "elisp/haml"
-	 "customizations/my-keys.el"))
-
-;; CoffeeScript
-(require 'coffee-mode)
-(add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
-(add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
-(setq-default tab-width 4)
-(defun coffee-custom ()
-  "coffee-mode-hook"
- (set (make-local-variable 'tab-width) 2))
-
-(add-hook 'coffee-mode-hook
-  '(lambda() (coffee-custom)))
-;; ack from emacs
-(require 'ack)
-
-;; Go Mode
-(require 'go-mode-load)
-
-;; Haml Mode
-(require 'haml-mode)
-
-;; Load elisp for emacs code browser
-(require 'ensime)
-(load-file "~/.emacs.d/elisp/scala/scala-mode-auto.el")
-
-;; Ensime
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
-
-(require 'yasnippet-bundle)
-(autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-;; autoloads
-(autoload 'magit-status "magit" "Magit" t)
-
- ;; Taken from the comment section in inf-ruby.el
- (autoload 'ruby-mode "ruby-mode" "Mode for editing ruby source files")
- (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
- (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
- (autoload 'run-ruby "inf-ruby" "Run an inferior Ruby process")
- (autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
- (add-hook 'ruby-mode-hook '(lambda () (inf-ruby-keys)))
- (add-to-list 'load-path "~/.emacs.d/themes")
- (autoload 'clojure-mode "clojure-mode" "A mode for clojure lisp" t)
- (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
- (autoload 'clojure-test-mode "clojure-test-mode" "Clojure test mode" t)
- (autoload 'clojure-test-maybe-enable "clojure-test-mode" "" t)
- (add-hook 'clojure-mode-hook 'clojure-test-maybe-enable)
-
- ;; No bars please 
- (tool-bar-mode -1)
- (scroll-bar-mode -1)
-
- ;; No startup splash as well
- (setq inhibit-splash-screen t)
- ;; Keys for getting the data in and out of clipboard
- (global-set-key [(shift delete)] 'clipboard-kill-region)
- (global-set-key [(control insert)] 'clipboard-kill-ring-save)
- (global-set-key [(shift insert)] 'clipboard-yank)
-
-;; Split ediff windows 
-(setq ediff-split-window-function 'split-window-horizontally)
-
- (defun toggle-fullscreen (&optional f)
-   (interactive)
-   (let ((current-value (frame-parameter nil 'fullscreen)))
-     (set-frame-parameter nil 'fullscreen
-			  (if (equal 'fullboth current-value)
-			      (if (boundp 'old-fullscreen) old-fullscreen nil)
-			    (progn (setq old-fullscreen current-value)
-				   'fullboth)))))
-
- (global-set-key [f11] 'toggle-fullscreen)
-
- ; Make new frames fullscreen by default. Note: this hook doesn't do
- ; anything to the initial frame if it's in your .emacs, since that file is
- ; read _after_ the initial frame is created.
- (add-hook 'after-make-frame-functions 'toggle-fullscreen)
-
- ; font size
- (set-face-attribute 'default nil :height 110)
- (set-default-font "ubuntu")
-
- (load-file "~/.emacs.d/themes/zenburn.el")
- (load-file "~/.emacs.d/themes/color-theme-blackboard.el")
- (load-file "~/.emacs.d/themes/color-theme-molokai.el")
- (load-file "~/.emacs.d/themes/color-theme-twilight.el")
-
- (color-theme-molokai)
-
-; Makes opening and switching between buffers easy
+;; modes
+(electric-indent-mode 0)
 (ido-mode 1)
-(iswitchb-mode 1)
 
-; Set up tabs
-; Use spaces instead of tabs 
-(setq c-basic-indent 2)
-(setq tab-width 4)
-(setq indent-tabs-mode nil)
+;; global keybindings
+(global-unset-key (kbd "C-z"))
 
+;; the package manager
+(require 'package)
+(setq
+   package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+		                          ("org" . "http://orgmode.org/elpa/")
+					                      ("melpa" . "http://melpa.org/packages/")
+							                          ("melpa-stable" . "http://stable.melpa.org/packages/"))
+    package-archive-priorities '(("melpa-stable" . 1)))
+
+(package-initialize)
+(when (not package-archive-contents)
+    (package-refresh-contents)
+      (package-install 'use-package))
+(require 'use-package)
+
+;; Packages
+
+;; Ace Jump
+(use-package ace-jump-mode
+  :bind ("C-c SPC" . ace-jump-mode)
+  :init
+  (progn
+    (require 'cl)))
+
+(use-package smex
+  :defer t
+  :bind (("M-x" . smex)
+         ("M-X" . smex-major-mode-commands))
+  :config
+  (progn
+    (smex-initialize)))
+
+;; Use the dracula theme
+(use-package dracula-theme)
+
+;; Ensime for scala
+(use-package ensime
+  :ensure t
+  :pin melpa)
+
+(use-package sbt-mode
+  :pin melpa)
+
+(use-package scala-mode
+  :pin melpa)
+
+;; Autocomplete
+(use-package auto-complete)
+
+;; Go Mode for emacs
+(use-package go-mode
+  :defer t)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (smex ace-jump-mode go-mode auto-complete ensime dracula-theme use-package evil))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
