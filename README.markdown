@@ -1,25 +1,14 @@
 # Introduction
-This is my emacs configuration
+
+Repository to my emacs configuration. After many years simplifying this to use
+use-package and the package hosting servers.
 
 
-# Elisps
+# Packages
   	   
-	   * Ack
-	   * Clojure Mode
-	   * Coffee Mode
-	   * Color Theme
 	   * Ensime
 	   * Go Mode
-	   * Haml Mode
-	   * Js2
-	   * Magit
 	   * Scala Mode
 	   * Slime
-	   * Yasnippet
-
-# Themes
-
-	  * Blackboard
-	  * Molokai ( Default )
-	  * Twilight
-	  * Zenburn 
+	   * Yasnippet (Code snippets)
+       * Dracula (Color theme)
