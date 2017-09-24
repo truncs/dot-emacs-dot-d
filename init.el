@@ -18,6 +18,7 @@
 ;; modes
 (electric-indent-mode 0)
 (ido-mode 1)
+(tool-bar-mode 0)
 
 ;; global keybindings
 (global-unset-key (kbd "C-z"))
