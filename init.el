@@ -70,7 +70,92 @@
   :pin melpa)
 
 ;; Autocomplete
-(use-package auto-complete)
+(use-package auto-complete
+  :defer t
+  :config
+  (progn 
+    (ac-set-trigger-key "TAB")
+    (ac-config-default)
+    (global-auto-complete-mode t)
+    (setq ac-delay 0.02)
+    (setq ac-use-menu-map t)
+    (setq ac-menu-height 50)
+    (setq ac-use-quick-help nil) 
+    (setq ac-comphist-file  "~/.emacs.d/ac-comphist.dat")
+    (setq ac-ignore-case nil)
+    (setq ac-dwim  t)
+    (setq ac-fuzzy-enable t)
+    (use-package ac-dabbrev
+      :config
+      (progn
+        (add-to-list 'ac-sources 'ac-source-dabbrev)))
+    (setq-default ac-sources '(
+                           ac-source-yasnippet
+                           ac-source-abbrev
+                           ac-source-dictionary
+                           ac-source-words-in-same-mode-buffers
+                           ))
+     (setq ac-modes '(js3-mode
+                     emacs-lisp-mode
+                     lisp-mode
+                     lisp-interaction-mode
+                     slime-repl-mode
+                     c-mode
+                     cc-mode
+                     c++-mode
+                     go-mode
+                     java-mode
+                     eclim-mode
+                     malabar-mode
+                     clojure-mode
+                     clojurescript-mode
+                     scala-mode
+                     scheme-mode
+                     ocaml-mode
+                     tuareg-mode
+                     coq-mode
+                     haskell-mode
+                     agda-mode
+                     agda2-mode
+                     perl-mode
+                     cperl-mode
+                     python-mode
+                     ruby-mode
+                     enh-ruby-mode
+                     lua-mode
+                     ecmascript-mode
+                     javascript-mode
+                     js-mode
+                     js2-mode
+                     php-mode
+                     css-mode
+                     makefile-mode
+                     sh-mode
+                     fortran-mode
+                     f90-mode
+                     ada-mode
+                     xml-mode
+                     sgml-mode
+                     ts-mode
+                     sclang-mode
+                     verilog-mode))))
+
+
+
+;; Yasnippet
+(use-package yasnippet
+  :config
+  (setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"                 ;; personal snippets
+        "~/.emacs.d/yasnippet-snippets/snippets" ;; the yasnippet collection
+        ))
+
+  (yas-reload-all))
+
+
+;; Magit
+(use-package magit
+  :defer t)
 
 ;; Go Mode for emacs
 (use-package go-mode
@@ -83,7 +168,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (smex ace-jump-mode go-mode auto-complete ensime dracula-theme use-package evil))))
+    (magit ac-dabbrev go-autocomplete auto-complete-config smex ace-jump-mode go-mode auto-complete ensime dracula-theme use-package evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
