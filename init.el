@@ -23,6 +23,16 @@
 ;; global keybindings
 (global-unset-key (kbd "C-z"))
 
+;; ansi-mode
+(defun my-term-mode-hook ()
+  (define-key term-raw-map (kbd "C-y") 'term-paste)
+  (define-key term-raw-map (kbd "C-k")
+    (lambda ()
+      (interactive)
+      (term-send-raw-string "\C-k")
+      (kill-line))))
+(add-hook 'term-mode-hook 'my-term-mode-hook)
+
 ;; the package manager
 (require 'package)
 (setq
