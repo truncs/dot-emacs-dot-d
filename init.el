@@ -22,6 +22,8 @@
 
 ;; global keybindings
 (global-unset-key (kbd "C-z"))
+(global-set-key [f1] 'ansi-term)
+
 
 ;; ansi-mode
 (defun my-term-mode-hook ()
