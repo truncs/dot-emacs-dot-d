@@ -32,7 +32,9 @@
     (lambda ()
       (interactive)
       (term-send-raw-string "\C-k")
-      (kill-line))))
+      (kill-line)))
+  (setq yas-dont-activate t))
+
 (add-hook 'term-mode-hook 'my-term-mode-hook)
 
 ;; the package manager
