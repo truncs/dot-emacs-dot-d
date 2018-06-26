@@ -13,12 +13,11 @@
 (setq-default
    indent-tabs-mode nil
     tab-width 4
-     c-basic-offset 4)
+    c-basic-offset 4)
 
-;; modes
-(electric-indent-mode 0)
-(ido-mode 1)
-(tool-bar-mode 0)
+;; Disable beeping
+(setq visible-bell 1)
+
 
 ;; global keybindings
 (global-unset-key (kbd "C-z"))
@@ -80,8 +79,22 @@
 (use-package sbt-mode
   :pin melpa)
 
+;; Solidity settings
+(use-package solidity-mode
+  :pin melpa)
+
+
 (use-package scala-mode
   :pin melpa)
+
+(use-package company
+  :pin melpa)
+(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'solidity-mode-hook
+	(lambda ()
+	(set (make-local-variable 'company-backends)
+		(append '((company-solidity company-capf company-dabbrev-code))
+			company-backends))))
 
 ;; Autocomplete
 (use-package auto-complete
@@ -159,11 +172,6 @@
 ;; Yasnippet
 (use-package yasnippet
   :config
-  (setq yas-snippet-dirs
-      '("~/.emacs.d/snippets"                 ;; personal snippets
-        "~/.emacs.d/yasnippet-snippets/snippets" ;; the yasnippet collection
-        ))
-
   (yas-reload-all))
 
 
@@ -180,17 +188,35 @@
   :config 
   (add-hook 'prog-mode-hook 'hl-todo))
 
+;; Markdown mode settings
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("617341f1be9e584692e4f01821716a0b6326baaec1749e15d88f6cc11c288ec6" default)))
  '(package-selected-packages
    (quote
-    (hl-todo magit ac-dabbrev go-autocomplete auto-complete-config smex ace-jump-mode go-mode auto-complete ensime dracula-theme use-package evil))))
+    (yasnippet-snippets markdown-mode interleave company-mode hl-todo magit ac-dabbrev go-autocomplete auto-complete-config smex ace-jump-mode go-mode auto-complete ensime dracula-theme use-package evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; modes
+(electric-indent-mode 0)
+(ido-mode 1)
+(tool-bar-mode 0)
+
