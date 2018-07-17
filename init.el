@@ -88,7 +88,12 @@
   :pin melpa)
 
 (use-package company
-  :pin melpa)
+  :pin melpa
+  :config 
+  (progn
+    (setq company-idle-delay 0)
+    (setq company-dabbrev-downcase 0)))
+
 (add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'solidity-mode-hook
 	(lambda ()
