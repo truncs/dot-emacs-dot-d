@@ -127,50 +127,51 @@
                            ac-source-dictionary
                            ac-source-words-in-same-mode-buffers
                            ))
-     (setq ac-modes '(js3-mode
-                     emacs-lisp-mode
-                     lisp-mode
-                     lisp-interaction-mode
-                     slime-repl-mode
-                     c-mode
-                     cc-mode
-                     c++-mode
-                     go-mode
-                     java-mode
-                     eclim-mode
-                     malabar-mode
-                     clojure-mode
-                     clojurescript-mode
-                     scala-mode
-                     scheme-mode
-                     ocaml-mode
-                     tuareg-mode
-                     coq-mode
-                     haskell-mode
+     (setq ac-modes '(ada-mode
                      agda-mode
                      agda2-mode
-                     perl-mode
+                     c++-mode
+                     c-mode
+                     cc-mode
+                     clojure-mode
+                     clojurescript-mode
+                     coq-mode
                      cperl-mode
-                     python-mode
-                     ruby-mode
-                     enh-ruby-mode
-                     lua-mode
+                     css-mode
+                     eclim-mode
                      ecmascript-mode
+                     emacs-lisp-mode
+                     enh-ruby-mode
+                     f90-mode
+                     fortran-mode
+                     go-mode
+                     haskell-mode
+                     java-mode
                      javascript-mode
                      js-mode
                      js2-mode
-                     php-mode
-                     css-mode
+                     lisp-interaction-mode
+                     lisp-mode
+                     lua-mode
                      makefile-mode
-                     sh-mode
-                     fortran-mode
-                     f90-mode
-                     ada-mode
-                     xml-mode
-                     sgml-mode
-                     ts-mode
+                     malabar-mode
+                     ocaml-mode
+                     perl-mode
+                     php-mode
+                     python-mode
+                     ruby-mode
+                     scala-mode
+                     scheme-mode
                      sclang-mode
-                     verilog-mode))))
+                     sgml-mode
+                     sh-mode
+                     slime-repl-mode
+                     ts-mode
+                     tuareg-mode
+                     xml-mode
+                     js3-mode
+                     verilog-mode
+                     yaml-mode))))
 
 
 
@@ -207,12 +208,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(custom-enabled-themes (quote (ample-zen)))
  '(custom-safe-themes
    (quote
-    ("617341f1be9e584692e4f01821716a0b6326baaec1749e15d88f6cc11c288ec6" default)))
+    ("2a7beed4f24b15f77160118320123d699282cbf196e0089f113245d4b729ba5d" "617341f1be9e584692e4f01821716a0b6326baaec1749e15d88f6cc11c288ec6" default)))
  '(package-selected-packages
    (quote
-    (yasnippet-snippets markdown-mode interleave company-mode hl-todo magit ac-dabbrev go-autocomplete auto-complete-config smex ace-jump-mode go-mode auto-complete ensime dracula-theme use-package evil))))
+    (yaml-mode ample-zen-theme multi-term yasnippet-snippets markdown-mode interleave company-mode hl-todo magit ac-dabbrev go-autocomplete auto-complete-config smex ace-jump-mode go-mode auto-complete ensime dracula-theme use-package evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
