@@ -27,7 +27,7 @@
 
 ;;; Code:
 
- (deftheme xcode-theme)
+ (deftheme xcode)
  (let ((class '((class color) (min-colors 89)))
        (fg1 "#d4d4d4")
        (fg2 "#d4d4d4")
@@ -242,7 +242,7 @@
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory (file-name-directory load-file-name))))
 
-(provide-theme 'xcode-theme)
+(provide-theme 'xcode)
 
 ;; Local Variables:
 ;; no-byte-compile: t

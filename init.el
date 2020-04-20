@@ -224,8 +224,8 @@
  )
 
 ;; Use xcode theme
-(load  (expand-file-name "themes/xcode.el" user-emacs-directory))
-(load-theme 'xcode t)
+(load  (expand-file-name "themes/xcode-theme.el" user-emacs-directory))
+(load-theme 'xcode-theme t)
 
 ;; modes
 (electric-indent-mode 0)
