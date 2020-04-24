@@ -215,7 +215,7 @@
     ("2a7beed4f24b15f77160118320123d699282cbf196e0089f113245d4b729ba5d" "617341f1be9e584692e4f01821716a0b6326baaec1749e15d88f6cc11c288ec6" default)))
  '(package-selected-packages
    (quote
-    (xcode yaml-mode multi-term yasnippet-snippets markdown-mode interleave company-mode hl-todo magit ac-dabbrev go-autocomplete auto-complete-config smex ace-jump-mode go-mode auto-complete ensime dracula-theme use-package evil))))
+    (yaml-mode multi-term yasnippet-snippets markdown-mode interleave company-mode hl-todo magit ac-dabbrev go-autocomplete auto-complete-config smex ace-jump-mode go-mode auto-complete ensime dracula-theme use-package evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -225,7 +225,6 @@
 
 ;; Use xcode theme
 (load  (expand-file-name "themes/xcode-theme.el" user-emacs-directory))
-(load-theme 'xcode-theme t)
 
 ;; modes
 (electric-indent-mode 0)
