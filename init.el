@@ -71,11 +71,6 @@
 ;; Use the dracula theme
 (use-package dracula-theme)
 
-;; Ensime for scala
-(use-package ensime
-  :ensure t
-  :pin melpa)
-
 (use-package sbt-mode
   :pin melpa)
 
@@ -210,18 +205,20 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
+ '(column-number-mode t)
  '(custom-safe-themes
    (quote
     ("2a7beed4f24b15f77160118320123d699282cbf196e0089f113245d4b729ba5d" "617341f1be9e584692e4f01821716a0b6326baaec1749e15d88f6cc11c288ec6" default)))
  '(package-selected-packages
    (quote
-    (yaml-mode multi-term yasnippet-snippets markdown-mode interleave company-mode hl-todo magit ac-dabbrev go-autocomplete auto-complete-config smex ace-jump-mode go-mode auto-complete ensime dracula-theme use-package evil))))
+    (gnu-elpa-keyring-update ack docker-tramp rust-mode yaml-mode multi-term yasnippet-snippets markdown-mode interleave company-mode hl-todo magit ac-dabbrev go-autocomplete auto-complete-config smex ace-jump-mode go-mode auto-complete dracula-theme use-package evil)))
+ '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "SF Mono" :foundry "APPL" :slant normal :weight normal :height 88 :width normal)))))
 
 ;; Use xcode theme
 (load  (expand-file-name "themes/xcode-theme.el" user-emacs-directory))
