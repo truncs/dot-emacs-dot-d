@@ -104,10 +104,6 @@
     (setq ac-ignore-case nil)
     (setq ac-dwim  t)
     (setq ac-fuzzy-enable t)
-    (use-package ac-dabbrev
-      :config
-      (progn
-        (add-to-list 'ac-sources 'ac-source-dabbrev)))
     (setq-default ac-sources '(
                            ac-source-yasnippet
                            ac-source-abbrev
@@ -205,7 +201,7 @@
     ("5ff3a60e4766a4b74afa7268c9a57c7a72ebb7386ae2629b4cee27562b1e9e90" "5a05a46286e47d1bda8151b37fea5e7e38be1e291f19fb73402a76fbef5ee95c" "4cd89e46d7fc2060e18021cf4a89f6af28661aba6a454e445cce2666b1611ab7" "1805fb283472cbe44571b8035125e3f575889fc9c4c0c6335622ac7c9938da5d" "aa5890424b1fec35d8bd1b2b7d3218bf3abc279f4a6f6172c498d3cfa1f81bf1" "14314fdae0c75ea8d2e28187213015a8cd881d0dad3e474b397158658aada668" "1598d2288563022f68d889643984294c1b50c986dee338ad9f2b9c18f15e4148" "078bde11b5fc0b7902a40262dda4db73be1b6c5158c8d76d4cddea98b77807e0" "d4bd862e3fd3985c00a5bd7fb32d574a119bd515ab49c7737690c26acfa3092f" "fe1c13d75398b1c8fd7fdd1241a55c286b86c3e4ce513c4292d01383de152cb7" "040c9c002d6b9af54c70186494f92609b150b24426c6f014b935ef504d964965" "60c9fed6a113923f49343520221c95628c203c7f8553e01843d136603328b823" "2a7beed4f24b15f77160118320123d699282cbf196e0089f113245d4b729ba5d" "617341f1be9e584692e4f01821716a0b6326baaec1749e15d88f6cc11c288ec6" default)))
  '(package-selected-packages
    (quote
-    (gnu-elpa-keyring-update ack docker-tramp rust-mode yaml-mode multi-term yasnippet-snippets markdown-mode interleave company-mode hl-todo magit ac-dabbrev go-autocomplete auto-complete-config smex ace-jump-mode go-mode auto-complete dracula-theme use-package evil)))
+    (jedi gnu-elpa-keyring-update ack docker-tramp rust-mode yaml-mode multi-term yasnippet-snippets markdown-mode interleave company-mode hl-todo magit ac-dabbrev go-autocomplete auto-complete-config smex ace-jump-mode go-mode auto-complete dracula-theme use-package evil)))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -213,6 +209,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "SF Mono" :foundry "APPL" :slant normal :weight normal :height 88 :width normal)))))
+
 
 ;; Use xcode theme
 (load  (expand-file-name "themes/xcode-theme.el" user-emacs-directory))
@@ -222,3 +219,7 @@
 (ido-mode 1)
 (tool-bar-mode 0)
 
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)                 ; optional
+(setq jedi:tooltip-method nil)
+(setq jedi:get-in-function-call-delay 0)
