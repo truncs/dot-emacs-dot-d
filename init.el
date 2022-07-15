@@ -52,14 +52,6 @@
 (require 'use-package)
 
 ;; Packages
-
-;; Ace Jump
-(use-package ace-jump-mode
-  :bind ("C-c SPC" . ace-jump-mode)
-  :init
-  (progn
-    (require 'cl)))
-
 (use-package smex
   :defer t
   :bind (("M-x" . smex)
@@ -67,9 +59,6 @@
   :config
   (progn
     (smex-initialize)))
-
-;; Use the dracula theme
-(use-package dracula-theme)
 
 ;; Ensime for scala
 (use-package ensime
@@ -210,12 +199,11 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
+ '(custom-enabled-themes '(xcode))
  '(custom-safe-themes
-   (quote
-    ("2a7beed4f24b15f77160118320123d699282cbf196e0089f113245d4b729ba5d" "617341f1be9e584692e4f01821716a0b6326baaec1749e15d88f6cc11c288ec6" default)))
+   '("2f945b8cbfdd750aeb82c8afb3753ebf76a1c30c2b368d9d1f13ca3cc674c7bc" "b46ee2c193e350d07529fcd50948ca54ad3b38446dcbd9b28d0378792db5c088" "b1dc2a54de7cfe92c7dc8a312d5283e90e6ca26b0763ac7d906524666355bec6" "2a7beed4f24b15f77160118320123d699282cbf196e0089f113245d4b729ba5d" "617341f1be9e584692e4f01821716a0b6326baaec1749e15d88f6cc11c288ec6" default))
  '(package-selected-packages
-   (quote
-    (yaml-mode multi-term yasnippet-snippets markdown-mode interleave company-mode hl-todo magit ac-dabbrev go-autocomplete auto-complete-config smex ace-jump-mode go-mode auto-complete ensime dracula-theme use-package evil))))
+   '(yaml-mode multi-term yasnippet-snippets markdown-mode interleave company-mode hl-todo magit ac-dabbrev go-autocomplete auto-complete-config smex ace-jump-mode go-mode auto-complete ensime dracula-theme use-package evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -231,3 +219,4 @@
 (ido-mode 1)
 (tool-bar-mode 0)
 
+(put 'upcase-region 'disabled nil)
