@@ -151,7 +151,7 @@
 (use-package yasnippet
   :config
   (yas-reload-all))
-
+(yas-global-mode 1)
 
 ;; Magit
 (use-package magit
