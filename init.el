@@ -252,9 +252,22 @@
 (set-face-attribute 'tab-line-highlight nil ;; mouseover
       :background "white" :foreground 'unspecified)
 
+(defun mp-split-below (arg)
+  "Split window below from the parent or from root with ARG."
+  (interactive "P")
+  (split-window (if arg (frame-root-window)
+                  (window-parent (selected-window)))
+                nil 'below nil))
+(defun mp-toggle-window-dedication ()
+  "Toggles window dedication in the selected window."
+  (interactive)
+  (set-window-dedicated-p (selected-window)
+     (not (window-dedicated-p (selected-window)))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "SF Mono" :foundry "APPL" :slant normal :weight normal :height 88 :width normal)))))
+
