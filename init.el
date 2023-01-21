@@ -22,7 +22,7 @@
 ;; global keybindings
 (global-unset-key (kbd "C-z"))
 (global-set-key [f1] 'ansi-term)
-
+(global-set-key (kbd "RET") 'newline-and-indent)
 
 ;; ansi-mode
 (defun my-term-mode-hook ()
