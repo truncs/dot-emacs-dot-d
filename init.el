@@ -59,7 +59,6 @@
 (use-package solidity-mode
   :pin melpa)
 
-
 (use-package scala-mode
   :pin melpa)
 
@@ -144,8 +143,6 @@
                      js3-mode
                      verilog-mode
                      yaml-mode))))
-
-
 
 ;; Yasnippet
 (use-package yasnippet
