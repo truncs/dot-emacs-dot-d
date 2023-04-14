@@ -36,17 +36,18 @@
 
 (add-hook 'term-mode-hook 'my-term-mode-hook)
 
-;; mouse integration
-(require 'mouse) ;; needed for iterm2 compatibility
-(xterm-mouse-mode t)
-(global-set-key [mouse-4] '(lambda ()
-                           (interactive)
-                           (scroll-down 1)))
-(global-set-key [mouse-5] '(lambda ()
-                           (interactive)
-                           (scroll-up 1)))
-(setq mouse-sel-mode t)
-(defun track-mouse (e))
+(unless (display-graphic-p)
+  ;; mouse integration
+  (require 'mouse) ;; needed for iterm2 compatibility
+  (xterm-mouse-mode t)
+  (global-set-key [mouse-4] '(lambda ()
+                               (interactive)
+                               (scroll-down 1)))
+  (global-set-key [mouse-5] '(lambda ()
+                               (interactive)
+                               (scroll-up 1)))
+  (setq mouse-sel-mode t)
+  (defun track-mouse (e)))
 
 ;; the package manager
 (require 'package)
@@ -299,5 +300,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Liga SFMonoNerdFont" :foundry "APPL" :slant normal :weight semi-bold :height 88 :width normal)))))
+ '(default ((t (:family "Source Code Pro" :foundry "ADBO" :slant normal :weight normal :height 88 :width normal)))))
 
