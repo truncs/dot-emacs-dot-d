@@ -99,11 +99,9 @@
     (setq company-dabbrev-downcase 0)))
 
 (add-hook 'after-init-hook 'global-company-mode)
-(add-hook 'solidity-mode-hook
-	(lambda ()
-	(set (make-local-variable 'company-backends)
-		(append '((company-solidity company-capf company-dabbrev-code company-yasnippet company-jedi))
-			company-backends))))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
 
 ;; Autocomplete
 (use-package auto-complete
@@ -209,9 +207,15 @@
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(column-number-mode t)
+ '(company-box-icons-alist 'company-box-icons-images)
+ '(company-dabbrev-downcase 0)
+ '(company-idle-delay 0)
+ '(company-quickhelp-color-background nil)
+ '(company-quickhelp-color-foreground "black")
  '(custom-enabled-themes '(xcode))
  '(custom-safe-themes
    '("73312750a0ce791489cad7fe2579d8582ea44d6dfcde274cb07c763277706a22" "4ad8e0bac03a34fdaf4a4f1e2d8bbca999d4d83410949b7e67335d2eac628b85" "5ff3a60e4766a4b74afa7268c9a57c7a72ebb7386ae2629b4cee27562b1e9e90" "5a05a46286e47d1bda8151b37fea5e7e38be1e291f19fb73402a76fbef5ee95c" "4cd89e46d7fc2060e18021cf4a89f6af28661aba6a454e445cce2666b1611ab7" "1805fb283472cbe44571b8035125e3f575889fc9c4c0c6335622ac7c9938da5d" "aa5890424b1fec35d8bd1b2b7d3218bf3abc279f4a6f6172c498d3cfa1f81bf1" "14314fdae0c75ea8d2e28187213015a8cd881d0dad3e474b397158658aada668" "1598d2288563022f68d889643984294c1b50c986dee338ad9f2b9c18f15e4148" "078bde11b5fc0b7902a40262dda4db73be1b6c5158c8d76d4cddea98b77807e0" "d4bd862e3fd3985c00a5bd7fb32d574a119bd515ab49c7737690c26acfa3092f" "fe1c13d75398b1c8fd7fdd1241a55c286b86c3e4ce513c4292d01383de152cb7" "040c9c002d6b9af54c70186494f92609b150b24426c6f014b935ef504d964965" "60c9fed6a113923f49343520221c95628c203c7f8553e01843d136603328b823" "2a7beed4f24b15f77160118320123d699282cbf196e0089f113245d4b729ba5d" "617341f1be9e584692e4f01821716a0b6326baaec1749e15d88f6cc11c288ec6" default))
+ '(global-company-mode t)
  '(package-selected-packages
    '(jedi-core company-jedi powerline dired-sidebar gnu-elpa-keyring-update ack docker-tramp rust-mode yaml-mode multi-term yasnippet-snippets markdown-mode interleave company-mode hl-todo magit ac-dabbrev go-autocomplete auto-complete-config smex ace-jump-mode go-mode auto-complete dracula-theme use-package evil powerline dired-sidebar))
  '(tool-bar-mode nil)
@@ -236,7 +240,11 @@
               '((company-jedi :separate company-yasnippet)
                 company-files)))
 (add-hook 'python-mode-hook #'my-python-mode-hook)
-
+(use-package pyvenv-auto
+  :hook ((python-mode . pyvenv-auto-run)))
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "-i --simple-prompt")
+(setq python-shell-completion-native-enable nil)
 
 (use-package dired-sidebar
   :bind (("C-x C-n" . dired-sidebar-toggle-sidebar))
@@ -301,5 +309,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Source Code Pro" :foundry "ADBO" :slant normal :weight normal :height 88 :width normal)))))
+ '(default ((t (:family "Liga SFMonoNerdFont" :foundry "APPL" :slant normal :weight light :height 101 :width normal))))
+ '(company-tooltip ((t (:background "#fafafa" :foreground "dark gray" :weight bold))))
+ '(company-tooltip-selection ((t nil))))
 
