@@ -19,6 +19,8 @@
 (setq visible-bell 1)
 (setq pixel-scroll-precision-mode 1)
 (windmove-default-keybindings)
+;; Disable tramp history in shell history
+(setq tramp-histfile-override "/dev/null")
 
 
 ;; global keybindings
