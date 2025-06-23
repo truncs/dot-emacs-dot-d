@@ -237,15 +237,15 @@
      default))
  '(global-company-mode t)
  '(package-selected-packages
-   '(jedi-core company-jedi powerline dired-sidebar
+   '(powerline dired-sidebar
                gnu-elpa-keyring-update ack docker-tramp rust-mode
                yaml-mode multi-term yasnippet-snippets markdown-mode
                interleave company-mode hl-todo magit ac-dabbrev
                go-autocomplete auto-complete-config smex ace-jump-mode
                go-mode auto-complete dracula-theme use-package evil
                powerline dired-sidebar))
- '(tool-bar-mode nil)
- '(warning-suppress-types '((jedi))))
+ '(tool-bar-mode nil))
+
 
 ;; Use xcode theme
 (load  (expand-file-name "themes/xcode-theme.el" user-emacs-directory))
@@ -260,14 +260,13 @@
 
 (put 'upcase-region 'disabled nil)
 
-(straight-use-package 'jedi-core)
-(straight-use-package 'company-jedi)
+(straight-use-package 'lsp-mode)
+(use-package lsp-ui
+  :commands lsp-ui-mode
+  :straight t)
 
-(defun my-python-mode-hook ()
-  (setq-local company-backends
-              '((company-jedi :separate company-yasnippet)
-                company-files)))
-(add-hook 'python-mode-hook #'my-python-mode-hook)
+(add-hook 'python-mode-hook 'lsp-deferred)
+
 (use-package pyvenv-auto
   :hook ((python-mode . pyvenv-auto-run)))
 (setq python-shell-interpreter "ipython"
@@ -326,4 +325,3 @@
  '(default ((t (:family "Liga SFMonoNerdFont" :foundry "APPL" :slant normal :weight medium :height 101 :width normal))))
  '(company-tooltip ((t (:background "#fafafa" :foreground "dark gray" :weight bold))))
  '(company-tooltip-selection ((t nil))))
-
