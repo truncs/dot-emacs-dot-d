@@ -6,9 +6,8 @@ use-package and the package hosting servers.
 
 # Packages
   	   
-  * Ensime
-  * Go Mode
-  * Scala Mode
-  * Slime
-  * Yasnippet (Code snippets)
-  * Dracula (Color theme)
+  * Magit
+  * Custom Apple like xcode theme
+  * LSP
+  * Straight for packages
+  * Company Box 
