@@ -9,6 +9,9 @@
 	 use-package-always-ensure t
 	  sentence-end-double-space nil)
 
+(setenv "LIBRARY_PATH"
+"/opt/local/lib/gcc15:/opt/local/lib/libgcc:/opt/local/lib/")
+
 ;; buffer local variables
 (setq-default
    indent-tabs-mode nil
@@ -19,6 +22,32 @@
 (setq visible-bell 1)
 (setq pixel-scroll-precision-mode 1)
 (windmove-default-keybindings)
+
+;; Tramp Optimizations
+;; Ref: https://coredumped.dev/2025/06/18/making-tramp-go-brrrr./
+(setq remote-file-name-inhibit-locks t
+      tramp-use-scp-direct-remote-copying t
+      remote-file-name-inhibit-auto-save-visited t)
+
+(setq tramp-copy-size-limit (* 1024 1024) ;; 1MB
+      tramp-verbose 2)
+
+(connection-local-set-profile-variables
+ 'remote-direct-async-process
+ '((tramp-direct-async-process . t)))
+
+(connection-local-set-profiles
+ '(:application tramp :protocol "rsync")
+ 'remote-direct-async-process)
+
+(defun $lsp-unless-remote ()
+  (if (file-remote-p buffer-file-name)
+      (progn (eldoc-mode -1)
+             (setq-local completion-at-point-functions nil))
+    (lsp)))
+
+(setq magit-tramp-pipe-stty-settings 'pty)
+
 ;; Disable tramp history in shell history
 (setq tramp-histfile-override "/dev/null")
 
@@ -237,13 +266,12 @@
      default))
  '(global-company-mode t)
  '(package-selected-packages
-   '(powerline dired-sidebar
-               gnu-elpa-keyring-update ack docker-tramp rust-mode
-               yaml-mode multi-term yasnippet-snippets markdown-mode
-               interleave company-mode hl-todo magit ac-dabbrev
-               go-autocomplete auto-complete-config smex ace-jump-mode
-               go-mode auto-complete dracula-theme use-package evil
-               powerline dired-sidebar))
+   '(powerline dired-sidebar gnu-elpa-keyring-update ack docker-tramp
+               rust-mode yaml-mode multi-term yasnippet-snippets
+               markdown-mode interleave company-mode hl-todo magit
+               ac-dabbrev go-autocomplete auto-complete-config smex
+               ace-jump-mode go-mode auto-complete dracula-theme
+               use-package evil powerline dired-sidebar))
  '(tool-bar-mode nil))
 
 
@@ -266,6 +294,20 @@
   :straight t)
 
 (add-hook 'python-mode-hook 'lsp-deferred)
+
+;; LSP customizations
+(defun lsp-find-definition-other-window ()
+  (interactive)
+  (lsp-find-definition :display-action 'window))
+
+(keymap-global-set "C-c l ." #'lsp-find-definition-other-window)
+
+(setq display-buffer-alist
+      '(("\\*xref\\*"
+         (display-buffer-in-side-window)
+         (side . bottom)
+         (window-height . 0.35))))
+
 
 (use-package pyvenv-auto
   :hook ((python-mode . pyvenv-auto-run)))
@@ -322,6 +364,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Liga SFMonoNerdFont" :foundry "APPL" :slant normal :weight medium :height 101 :width normal))))
+ '(default ((t (:family "SF Mono" :foundry "nil" :slant normal :weight regular :height 110 :width normal))))
  '(company-tooltip ((t (:background "#fafafa" :foreground "dark gray" :weight bold))))
  '(company-tooltip-selection ((t nil))))
